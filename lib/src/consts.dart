@@ -1,7 +1,3 @@
-import 'dart:ffi';
-
-import 'dart:html';
-
 enum Subscription { free, startup, developer, professional, enterprise }
 
 class Plan {
@@ -37,10 +33,19 @@ class Plan {
   }
 }
 
-int getDaysinMonth(int month) {
-  switch (month) {
-    case in Range(1, 3, 5, 7; 8, 10, 12):
-      break;
+/// Gets the total days in the month of the supplied DateTime (leap year support)
+int getDaysinMonth(DateTime date) {
+  switch (date.month) {
+    case 2:
+      if ((date.year % 4 == 0) &
+          (date.year % 400 == 0) &
+          (date.year % 100 != 0)) {
+        return 29;
+      }
+      return 28;
+    case 1 | 3 | 5 | 7 | 8 | 10 | 12:
+      return 31;
     default:
+      return 30;
   }
 }
