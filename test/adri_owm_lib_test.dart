@@ -6,8 +6,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:adri_owm_lib/adri_owm_lib.dart';
 
 void main() async {
-  OpenWeatherMapClient client = OpenWeatherMapClient(OpenWeatherMapConfig(
-      "d757cae5aa82d515f397019a7b53305b", Plan(Subscription.free)));
+  OpenWeatherMapClient client =
+      OpenWeatherMapClient(OpenWeatherMapConfig("", Plan(Subscription.free)));
 
   print(await client.getLocationByName("Beringen"));
 
