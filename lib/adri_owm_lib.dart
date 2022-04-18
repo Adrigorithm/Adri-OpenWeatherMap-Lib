@@ -28,6 +28,23 @@ class OpenWeatherMapClient {
 
     return await response.transform(const Utf8Decoder()).join();
   }
+
+  Future<String> getCurrentWeather(double latitude, double longitude,
+      {OutputMode mode = OutputMode.json,
+      Units unit = Units.metric,
+      String lang = Languages.English}) async {
+    var request = await HttpClient().getUrl(Uri.parse(baseUri +
+        "data/2.5/weather?lat=" +
+        latitude.toString() +
+        "&lon=" +
+        longitude.toString() +
+        "&appid=" +
+        config.apiKey));
+
+    var response = await request.close();
+
+    return await response.transform(const Utf8Decoder()).join();
+  }
 }
 
 /// A Calculator.
